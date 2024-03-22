@@ -1,4 +1,4 @@
-### Task of Go API
+### Task for Go API
 
 You have to implement following Rest APIs in this boilerplate.
 Login API (Check user credentials and return Json web token if login successful)
