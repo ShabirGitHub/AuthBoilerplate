@@ -1,0 +1,116 @@
+basePath: /api/v1
+definitions:
+  models.Profile:
+    properties:
+      address:
+        type: string
+      age:
+        type: integer
+      city:
+        type: string
+      country:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      gender:
+        type: string
+      interests:
+        items:
+          type: string
+        type: array
+      last_name:
+        type: string
+      phone_number:
+        type: string
+      social_links:
+        additionalProperties:
+          type: string
+        type: object
+      username:
+        type: string
+    type: object
+  models.User:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: shabir@gmail.com
+    name: API Support
+  description: This is a sample service for managing AuthBoilerplate
+  termsOfService: http://swagger.io/terms/
+  title: Auth Boilerplate API
+  version: "1.0"
+paths:
+  /auth/sign_in:
+    post:
+      consumes:
+      - application/json
+      description: Signs in a user with the provided credentials and returns a session
+        token if successful
+      parameters:
+      - description: User credentials
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully signed in
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid request
+          schema:
+            additionalProperties: true
+            type: object
+        "401":
+          description: Invalid credentials
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Signs in a user and returns a session token
+  /profile/get:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves the profile information for the authenticated user
+      parameters:
+      - description: Bearer JWT token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Profile information
+          schema:
+            $ref: '#/definitions/models.Profile'
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties: true
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Retrieves the profile information for the authenticated user
+swagger: "2.0"
