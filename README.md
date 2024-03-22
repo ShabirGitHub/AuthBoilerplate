@@ -1,4 +1,4 @@
-### Task for Go API
+### Task for Go Rest APIs
 
 You have to implement following Rest APIs in this boilerplate.
 Login API (Check user credentials and return Json web token if login successful)
@@ -21,7 +21,7 @@ Navigate to http://localhost:8080/swagger/index.html in your browser and check o
 
 ***
 
-### LogIn API Credential
+### LogIn API Credentials
 
 ```
 {
